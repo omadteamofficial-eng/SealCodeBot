@@ -225,7 +225,7 @@ if(!file_exists("sozlamalar/tugma/tugma4.txt")){
 file_put_contents("sozlamalar/tugma/tugma4.txt","☎️ Murojaat");
 }
 if(!file_exists("sozlamalar/tugma/tugma5.txt")){
-file_put_contents("sozlamalar/tugma/tugma5.txt","📮 Tekin Reklama");
+file_put_contents("sozlamalar/tugma/tugma5.txt","🛠 Ta'mirlanyapti");
 }
 if(!file_exists("sozlamalar/tugma/tugma6.txt")){
 file_put_contents("sozlamalar/tugma/tugma6.txt","💎 Investitsiya");
@@ -2824,9 +2824,9 @@ bot('editMessageText',[
 Almashuvingiz muvaffaqiyatli bajarilishi uchun quyidagi harakatlarni amalga oshiring: 
 1) Istalgan pul miqdorini tepadagi Hamyonga tashlang
 2) «✅ To'lov qildim» tugmasini bosing; 
-4) Qancha pul miqdoni yuborganingizni kiritin;
-3) Toʻlov haqidagi suratni botga yuboring;
-3) Operator tomonidan almashuv tasdiqlanishini kuting!",
+4) Qancha pul miqdoni yuborganingizni kiriting;
+3) Toʻlov haqidagi chekni botga yuboring;
+3) Toʻlov tasdiqlanishini kuting!",
 'parse_mode'=>'html',
 'reply_markup'=>json_encode([
 'inline_keyboard'=>[
@@ -2879,7 +2879,7 @@ if($userstep == "oplata" and joinchat($cid)){ // "==true" shart emas, lekin tura
             file_put_contents("step/hisob.$cid", $text);
             bot('SendMessage',[
                 'chat_id'=>$cid,
-                'text'=>"<b>To'lovingizni chek yoki skreenshotini shu yerga yuboring:</b>",
+                'text'=>"<b>To'lovingizni chek yoki screenshotini shu yerga yuboring:</b>",
                 'parse_mode'=>'html',
             ]);
             file_put_contents("step/$cid.txt",'rasm');
@@ -3189,7 +3189,7 @@ bot('sendMessage',[
 'parse_mode'=>"html",
 'reply_markup'=>json_encode([
 'inline_keyboard'=>[
-[['text'=>"👨‍💻 Bog'lanish",'url'=>"https://t.me/$admin"]],
+[['text'=>"👨‍💻 Bog'lanish",'url'=>"https://t.me/SULTONOVSARDORBEKowner"]],
 [['text'=>"🤖 Bot ochish",'url'=>"https://t.me/SealChannel"]],
 ]])
 ]);
@@ -3197,5 +3197,6 @@ bot('sendMessage',[
 
 
 ?>
+
 
 
