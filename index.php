@@ -2,7 +2,7 @@
 define('API_KEY',"8043872456:AAEwu2Qgz0gc5_SpG8L8WpM56WykdQMwMO0");  
 
 $admin = "8125289524";
-$kanalim = "@Qiziq_Coders";
+$kanalim = "@SealChannel";
 
 function bot($method,$datas=[]){
 $url = "https://api.telegram.org/bot".API_KEY."/".$method;
@@ -3156,3 +3156,4 @@ bot('sendMessage',[
 
 
 ?>
+
