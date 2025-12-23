@@ -1,7 +1,7 @@
 <?php
-define('API_KEY',"6392241440:AAFbiDcSSh_R0YbqvL49GcB8ScdcrwXJnfE");  
+define('API_KEY',"8043872456:AAEwu2Qgz0gc5_SpG8L8WpM56WykdQMwMO0");  
 
-$admin = "6215802239";
+$admin = "8125289524";
 $kanalim = "@Qiziq_Coders";
 
 function bot($method,$datas=[]){
@@ -3153,5 +3153,6 @@ bot('sendMessage',[
 ]])
 ]);
 }
+
 
 ?>
