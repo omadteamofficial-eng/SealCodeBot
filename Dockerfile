@@ -1,12 +1,25 @@
 FROM php:8.2-apache
 
-# Apache rewrite yoqish (ko‘p PHP loyihalar uchun kerak bo‘ladi)
+# Apache modullar
 RUN a2enmod rewrite
 
-# Loyiha fayllarini Apache papkasiga ko‘chirish
-COPY . /var/www/html/
+# Kerakli PHP extensionlar
+RUN docker-php-ext-install curl
 
-# Ruxsatlarni to‘g‘rilash
+# Composer o‘rnatish
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
+# Ishchi papka
+WORKDIR /var/www/html
+
+# Avval composer.json (cache uchun)
+COPY composer.json ./
+RUN composer install --no-dev --optimize-autoloader
+
+# Keyin barcha fayllar
+COPY . .
+
+# Ruxsatlar
 RUN chown -R www-data:www-data /var/www/html
 
 EXPOSE 80
