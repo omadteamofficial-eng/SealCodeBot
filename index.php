@@ -1,8 +1,23 @@
 <?php
-define('API_KEY',"8043872456:AAEwu2Qgz0gc5_SpG8L8WpM56WykdQMwMO0");  
+// Render Environment Variables bo'limidan ma'lumotlarni olish
+$bot_token = getenv('BOT_TOKEN');
+$admin_id = getenv('ADMIN_ID');
+$channel_user = getenv('CHANNEL_USER');
 
-$admin = "8125289524";
-$kanalim = "@SealChannel";
+// Agar Renderda hali kiritilmagan bo'lsa, kod buzilmasligi uchun tekshiruv (ixtiyoriy)
+if (!$bot_token) {
+    // Vaqtincha logga yozish yoki to'xtatish
+    error_log("Diqqat: BOT_TOKEN topilmadi. Render sozlamalarini tekshiring!");
+}
+
+// O'zgaruvchilarni o'z o'rniga qo'yish
+define('API_KEY', $bot_token);  
+
+$admin = $admin_id;
+$kanalim = $channel_user;
+
+// ... kodning davomi
+
 
 function bot($method,$datas=[]){
 $url = "https://api.telegram.org/bot".API_KEY."/".$method;
@@ -2839,7 +2854,8 @@ bot('SendMessage',[
 file_put_contents("step/$ccid.txt",'oplata');
 }
 
-if($userstep == "oplata" and joinchat($ccid)=="true"){
+// ESKI (XATO) VARIANT:
+/* if($userstep == "oplata" and joinchat($ccid)=="true"){
 if($tx=="◀️ Orqaga"){
 unlink("step/$cid.txt");
 }else{
@@ -2851,6 +2867,31 @@ bot('SendMessage',[
 ]);
 file_put_contents("step/$cid.txt",'rasm');
 }}
+*/
+
+// YANGI (TO'G'RI) VARIANT:
+if($userstep == "oplata" and joinchat($cid)){ // "==true" shart emas, lekin turaversa ham bo'ladi
+    if($tx == "◀️ Orqaga"){
+        unlink("step/$cid.txt");
+    }else{
+        // Faqat raqam kiritilishini tekshirish uchun qo'shimcha himoya (ixtiyoriy)
+        if(is_numeric($text)){
+            file_put_contents("step/hisob.$cid", $text);
+            bot('SendMessage',[
+                'chat_id'=>$cid,
+                'text'=>"<b>To'lovingizni chek yoki skreenshotini shu yerga yuboring:</b>",
+                'parse_mode'=>'html',
+            ]);
+            file_put_contents("step/$cid.txt",'rasm');
+        } else {
+             bot('SendMessage',[
+                'chat_id'=>$cid,
+                'text'=>"<b>Iltimos, faqat raqam kiriting!</b>",
+                'parse_mode'=>'html',
+            ]);
+        }
+    }
+}
 
 if($userstep == "rasm"){
 if($cid==$admin){
@@ -3149,11 +3190,12 @@ bot('sendMessage',[
 'reply_markup'=>json_encode([
 'inline_keyboard'=>[
 [['text'=>"👨‍💻 Bog'lanish",'url'=>"https://t.me/$admin"]],
-[['text'=>"🤖 Bot ochish",'url'=>"https://t.me/uzdev_php"]],
+[['text'=>"🤖 Bot ochish",'url'=>"https://t.me/SealChannel"]],
 ]])
 ]);
 }
 
 
 ?>
+
 
