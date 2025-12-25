@@ -725,14 +725,14 @@ if($royxat != null){
 bot('editMessageText',[
 'chat_id'=>$ccid,
 'message_id'=>$cmid,
-'text'=>"📋 <b>Botlar ro'yxati:</b>",
+'text'=>"📋 <b>Kodlar ro'yxati:</b>",
 'parse_mode'=>'html',
 'reply_markup'=>$key,
 ]);
 }else{
 bot('answerCallbackQuery',[
 'callback_query_id'=>$callid,
-'text'=>"📂 Botlar mavjud emas!",
+'text'=>"📂 Kodlar mavjud emas!",
 'show_alert'=>true,
 ]);
 }}
@@ -1010,7 +1010,7 @@ file_put_contents("sozlamalar/bot/$kat/$roy/caption.txt",$text);
 bot('SendMessage',[
 'chat_id'=>$cid,
 'text'=>"<b>Qabul qilindi
-Endi foydalanuvchi kod olayotgabda bot nima deyidhi kerak
+Endi foydalanuvchi kod olayotganda bot nima deyishi kerak
 Masalan $type bot kodi</b>",
 'parse_mode'=>'html',
 'reply_markup'=>$admin1_menu,
@@ -1189,7 +1189,7 @@ bot('sendMessage',[
 ]);
 bot('sendMessage',[
 'chat_id'=>$saved,
-'text'=>"<b>Admin tomonidan bloklandingiz!</b>",
+'text'=>"<b>Bloklandingiz!</b>",
 'parse_mode'=>"html",
 ]);
 unlink("step/odam.txt");
